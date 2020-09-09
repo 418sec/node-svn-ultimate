@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-var exec = require( 'child_process' ).exec;
+var execFile = require( 'child_process' ).execFile;
 var fs = require( 'fs-extra' );
 var os = require( 'os' );
 var path = require( 'path' );
@@ -58,7 +58,8 @@ var execute = function( cmd, options, callback ) {
 	if ( options.params ) {
 		cmd += ' ' + options.params.join( " " );
 	}
-	exec( cmd, execOptions, function( err, stdo, stde ) {
+	cmd = cmd.split(' ')
+	execFile( cmd[0], cmd.splice(1), execOptions, function( err, stdo, stde ) {
 		if ( !options.quiet ) {
 			process.stderr.write( stde.toString() );
 		}
