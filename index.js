@@ -59,7 +59,7 @@ var execute = function( cmd, options, callback ) {
 		cmd += ' ' + options.params.join( " " );
 	}
 	cmd = cmd.split(' ')
-	execFile( cmd[0], cmd.splice(1), execOptions, function( err, stdo, stde ) {
+	execFile( cmd[0], cmd.slice(1), execOptions, function( err, stdo, stde ) {
 		if ( !options.quiet ) {
 			process.stderr.write( stde.toString() );
 		}
